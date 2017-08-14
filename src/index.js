@@ -19,7 +19,7 @@ const Marker = mongoose.model('Marker', MarkerSchema);
 
 app.get('*', (req, res) => {
   Marker.find({}, (err, markers) => {
-    res.send(renderApp(JSON.parse(markers)));
+    res.send(renderApp(markers));
   })
 })
 
