@@ -1,5 +1,5 @@
 const renderApp = () =>
-  `<!doctype html>
+  `<!DOCTYPE html>
   <html>
     <head>
       <title>Green List</title>
