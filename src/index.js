@@ -16,13 +16,13 @@ const MarkerSchema = new mongoose.Schema({});
 const Marker = mongoose.model('Marker', MarkerSchema);
 
 app.get('*', (req, res) => {
-  Marker.find({}, (err, markers) => {
-    if (markers)
+  // Marker.find({}, (err, markers) => {
+  //   if (markers)
       res.send(renderApp());
-    else
-      console.log('no markers')
-      res.end()
-  })
+  //   else
+  //     console.log('no markers')
+  //     res.end()
+  // })
 })
 
 app.listen(8080);
