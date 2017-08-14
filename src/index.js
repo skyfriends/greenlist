@@ -25,4 +25,4 @@ app.get('*', (req, res) => {
   // })
 })
 
-app.listen(PORT || 8080);
+app.listen(WEB_PORT || 8080);
