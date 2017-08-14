@@ -7,7 +7,7 @@ const renderApp = (markers) =>
     <body>
       <div id="root"></div>
       <script src="/static/js/bundle.js"></script>
-      <script markers=${JSON.parse(markers)}></script>
+      <script markers=${markers}></script>
     </body>
   </html>
   `;
