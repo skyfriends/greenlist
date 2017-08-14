@@ -1,4 +1,4 @@
-const renderApp = () =>
+const renderApp = (markers) =>
   `<!DOCTYPE html>
   <html>
     <head>
@@ -7,6 +7,7 @@ const renderApp = () =>
     <body>
       <div id="root"></div>
       <script src="/static/js/bundle.js"></script>
+      <script markers=${markers}></script>
     </body>
   </html>
   `;
