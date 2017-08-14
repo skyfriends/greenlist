@@ -8,6 +8,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import PDFMaker from '../pdf-generator';
 
 class DataTable extends React.Component {
   render() {
@@ -31,6 +32,7 @@ class DataTable extends React.Component {
             </TableBody>
           </Table>
         </MuiThemeProvider>
+        <PDFMaker />
       </div>
     );
   }
