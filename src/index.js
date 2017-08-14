@@ -11,6 +11,18 @@ app.use('/static', express.static('public'));
 const mongodb = `mongodb://${process.env.UNAME}:${process.env.PASS}@${process.env.LOC}:${process.env.MDBPORT}/greenlist`;
 mongoose.connect(mongodb);
 
-app.get('*', (req, res) => res.send(renderApp()));
+const MarkerSchema = new mongoose.Schema({});
 
-app.listen(process.env.PORT);
+const Marker = mongoose.model('Marker', MarkerSchema);
+
+app.get('*', (req, res) => {
+  Marker.find({}, (err, markers) => {
+    if (markers)
+      res.send(renderApp());
+    else
+      console.log('no markers')
+      res.end()
+  })
+})
+
+app.listen(8080);
