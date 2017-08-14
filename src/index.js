@@ -19,13 +19,13 @@ const Marker = mongoose.model('Marker', MarkerSchema);
 
 app.get('*', (req, res) => {
   Marker.find({}, (err, markers) => {
-    markers.forEach(marker => {
+    markers = markers.map(marker => {
       const builderIndex = str.indexOf("Builder") + 25;
       const certIndex = str.indexOf("<\/div><div><span class='l'><b>Certification Type<\/b>");
       const endIndex = str.indexOf("</div><div><span class='l'><b>County")
       const builder = marker.d.slice(builderIndex, certIndex);
       const certType = marker.d.slice(certIndex + 66, endIndex);
-      marker = {
+      return {
         lat: marker.lt,
         lon: marker.ln,
         index: marker.pos,
