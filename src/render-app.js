@@ -1,4 +1,4 @@
-const renderApp = () =>
+const renderApp = (markers) =>
   `<!DOCTYPE html>
   <html>
     <head>
@@ -12,3 +12,6 @@ const renderApp = () =>
   `;
 
 export default renderApp;
+
+
+      // <script markers=${markers}></script>
