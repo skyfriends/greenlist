@@ -39,7 +39,7 @@ const formatMarkers = markers =>
   });
 
 app.get('/', (req, res) => {
-  res.send(renderApp);
+  res.send(renderApp());
 })
 
 app.get('/data', (req, res) =>
