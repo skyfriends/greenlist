@@ -1,7 +1,7 @@
 import {} from 'dotenv/config';
 import express from 'express';
-import renderApp from './render-app';
 import mongoose from 'mongoose';
+import renderApp from './render-app';
 // import cors from 'cors';
 // import favicon from 'serve-favicon';
 
@@ -37,6 +37,10 @@ const formatMarkers = markers =>
     delete copy.d;
     return copy;
   });
+
+app.get('/', (req, res) => {
+  res.send(renderApp);
+})
 
 app.get('/data', (req, res) =>
   Marker.find({'c': 'Seattle'}, (err, markers) =>
