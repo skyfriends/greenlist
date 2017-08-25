@@ -18,7 +18,7 @@ class App extends React.Component {
       this.setState({ data: JSON.parse(data) });
     } else {
       superagent
-        .get('http://localhost:8080/data')
+        .get('https://green-list.herokuapp.com/data')
         .then(res => {
           localStorage.setItem('green-homes', JSON.stringify(JSON.parse(res.text)));
           this.setState({ data: JSON.parse(res.text) });
