@@ -2,15 +2,15 @@ import {} from 'dotenv/config';
 import express from 'express';
 import renderApp from './render-app';
 import mongoose from 'mongoose';
-import cors from 'cors';
+// import cors from 'cors';
 // import favicon from 'serve-favicon';
 
 const app = express();
 
-app.use(cors({
-  origin: 'http://localhost:8081',
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: 'https://green-list.herokuapp.com/',
+//   credentials: true,
+// }));
 
 app.use('/static', express.static('dist'));
 app.use('/static', express.static('public'));
