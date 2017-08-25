@@ -24,15 +24,16 @@ const MarkerSchema = new mongoose.Schema({ d: String });
 const Marker = mongoose.model('Marker', MarkerSchema);
 
 const formatMarkers = markers =>
-  markers.map(marker => {
+  markers.filter((marker, index) => {
     const copy = (Object.assign({}, marker))._doc;
     const builderIndex = copy.d.indexOf("Builder") + 25;
     const certIndex = copy.d.indexOf("<\/div><div><span class='l'><b>Certification Type<\/b>");
-    const endIndex = copy.d.indexOf("</div><div><span class='l'><b>County");
-    const builder = copy.d.slice(builderIndex, certIndex);
-    const certType = copy.d.slice(certIndex + 66, endIndex);
-    copy.builder = builder;
-    copy.certType = certType;
+    let endIndex = copy.d.indexOf("</div><div><span class='l'><b>County");
+    const extraBullshitIndex = copy.d.indexOf("</div><div><span class='l'><b># Certifications");
+    const anotherIndex = copy.d.indexOf("</div><div><span class='l'><b>Community</b>:</span>&#160")
+    endIndex = endIndex !== -1 ? endIndex : extraBullshitIndex !== -1 ? extraBullshitIndex : anotherIndex;
+    copy.builder = copy.d.slice(builderIndex, certIndex);
+    copy.certType = copy.d.slice(certIndex + 66, endIndex);
     delete copy.d;
     return copy;
   });

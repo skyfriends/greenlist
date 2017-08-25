@@ -1,10 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './component/app';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import App from './component/app';
+import Login from './component/login';
 
 injectTapEventPlugin();
 
-const AppContainer = () => <App />;
+class AppContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { authenticated: false };
+    this.authenticate = this.authenticate.bind(this);
+  }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+  authenticate() {
+    this.setState({ authenticated: true });
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.authenticated ? (
+          <App />
+        ) : (
+          <Login authenticate={this.authenticate} />
+        )}
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<AppContainer />, document.getElementById('root'));

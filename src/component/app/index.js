@@ -13,9 +13,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    superagent
-      .get('http://localhost:8080/data')
-      .then(res => this.setState({ data: JSON.parse(res.text) }));
+    const data = localStorage.getItem('green-homes');
+    if (data) {
+      this.setState({ data: JSON.parse(data) });
+    } else {
+      superagent
+        .get('http://localhost:8080/data')
+        .then(res => {
+          localStorage.setItem('green-homes', JSON.stringify(JSON.parse(res.text)));
+          this.setState({ data: JSON.parse(res.text) });
+        });
+    }
   }
 
   render() {
